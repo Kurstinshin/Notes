@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import NoteHeader from './components/NoteHeader';
+import NoteInputPanel from './components/NoteInputPanel';
+import NoteList from './components/NoteList';
 
 const STORAGE_KEY = 'noteApp.notes';
 
@@ -42,51 +45,15 @@ function App() {
   return (
     <div className="App">
       <div className="note-shell">
-        <header className="note-header">
-          <div>
-            <p className="note-brand">Personal Notes</p>
-            <p className="note-subtitle">Capture ideas, tasks, and reminders instantly.</p>
-          </div>
-          <span className="note-count">{notes.length} {notes.length === 1 ? 'note' : 'notes'}</span>
-        </header>
-
-        <section className="note-input-panel">
-          <textarea
-            aria-label="Write a note"
-            className="note-textarea"
-            placeholder="Write a new note..."
-            value={draft}
-            onChange={(event) => setDraft(event.target.value)}
-          />
-          <div className="note-buttons">
-            <button className="primary-button" onClick={addNote} disabled={!draft.trim()}>
-              Add note
-            </button>
-            <button className="secondary-button" onClick={clearNotes} disabled={notes.length === 0}>
-              Clear all
-            </button>
-          </div>
-        </section>
-
-        <section className="note-list">
-          {notes.length === 0 ? (
-            <div className="note-empty">
-              <p>No notes yet. Add one above to get started.</p>
-            </div>
-          ) : (
-            notes.map((note) => (
-              <article className="note-card" key={note.id}>
-                <div>
-                  <p className="note-text">{note.text}</p>
-                  <p className="note-meta">{new Date(note.createdAt).toLocaleString()}</p>
-                </div>
-                <button className="delete-button" onClick={() => deleteNote(note.id)}>
-                  Delete
-                </button>
-              </article>
-            ))
-          )}
-        </section>
+        <NoteHeader noteCount={notes.length} />
+        <NoteInputPanel
+          draft={draft}
+          onDraftChange={setDraft}
+          onAddNote={addNote}
+          onClearNotes={clearNotes}
+          hasNotes={notes.length > 0}
+        />
+        <NoteList notes={notes} onDeleteNote={deleteNote} />
       </div>
     </div>
   );
