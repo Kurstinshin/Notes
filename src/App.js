@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import NoteHeader from './components/NoteHeader';
 import NoteInputPanel from './components/NoteInputPanel';
 import NoteList from './components/NoteList';
+import NoteSearch from './components/NoteSearch';
 
 const STORAGE_KEY = 'noteApp.notes';
 
@@ -15,6 +16,7 @@ function App() {
     }
   });
   const [draft, setDraft] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
@@ -42,10 +44,24 @@ function App() {
     setNotes([]);
   };
 
+  const filteredNotes = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+
+    if (!query) {
+      return notes;
+    }
+
+    return notes.filter((note) => note.text.toLowerCase().includes(query));
+  }, [notes, searchTerm]);
+
   return (
     <div className="App">
       <div className="note-shell">
-        <NoteHeader noteCount={notes.length} />
+        <NoteHeader
+          noteCount={notes.length}
+          visibleCount={filteredNotes.length}
+          isFiltered={searchTerm.trim().length > 0}
+        />
         <NoteInputPanel
           draft={draft}
           onDraftChange={setDraft}
@@ -53,7 +69,12 @@ function App() {
           onClearNotes={clearNotes}
           hasNotes={notes.length > 0}
         />
-        <NoteList notes={notes} onDeleteNote={deleteNote} />
+        <NoteSearch
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          onClearSearch={() => setSearchTerm('')}
+        />
+        <NoteList notes={filteredNotes} onDeleteNote={deleteNote} />
       </div>
     </div>
   );

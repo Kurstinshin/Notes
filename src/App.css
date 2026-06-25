@@ -46,10 +46,32 @@
   margin-top: 6px;
 }
 
+.note-filter-info {
+  margin: 8px 0 0;
+  color: #9333ea;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
 .note-input-panel {
   display: grid;
   gap: 18px;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.note-input-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 6px;
+  color: #7c3aed;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.note-input-meta span {
+  opacity: 0.85;
 }
 
 .note-textarea {
@@ -70,6 +92,32 @@
   outline: none;
   border-color: #c084fc;
   box-shadow: 0 0 0 4px rgba(192, 132, 252, 0.18);
+}
+
+.note-search-panel {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 22px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.note-search-input {
+  flex: 1 1 320px;
+  min-width: 220px;
+  border-radius: 18px;
+  border: 1px solid rgba(167, 139, 250, 0.55);
+  padding: 14px 18px;
+  font-size: 1rem;
+  color: #3b0764;
+  background: rgba(255, 247, 255, 0.95);
+}
+
+.note-search-input:focus {
+  outline: none;
+  border-color: #d946ef;
+  box-shadow: 0 0 0 4px rgba(219, 39, 119, 0.14);
 }
 
 .note-buttons {
@@ -93,6 +141,12 @@
 .secondary-button:hover,
 .delete-button:hover {
   transform: translateY(-1px);
+}
+
+.small-button {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
 }
 
 .primary-button {
@@ -122,6 +176,7 @@
 .note-list {
   display: grid;
   gap: 18px;
+  min-height: 220px;
 }
 
 .note-card {
@@ -156,6 +211,11 @@
 }
 
 .note-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
   padding: 34px;
   text-align: center;
   border-radius: 22px;

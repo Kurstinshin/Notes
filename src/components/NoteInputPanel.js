@@ -8,6 +8,10 @@ function NoteInputPanel({ draft, onDraftChange, onAddNote, onClearNotes, hasNote
         value={draft}
         onChange={(event) => onDraftChange(event.target.value)}
       />
+      <div className="note-input-meta">
+        <span>{draft.length} characters</span>
+        <span>{draft.trim().length ? 'Ready to add' : 'Type a note to save it'}</span>
+      </div>
       <div className="note-buttons">
         <button className="primary-button" onClick={onAddNote} disabled={!draft.trim()}>
           Add note
