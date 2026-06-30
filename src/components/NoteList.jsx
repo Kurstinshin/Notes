@@ -1,6 +1,6 @@
 import NoteCard from './NoteCard';
 
-function NoteList({ notes, onDeleteNote }) {
+function NoteList({ notes, onDeleteNote, onTogglePin, showTimestamps, compactMode }) {
   if (notes.length === 0) {
     return (
       <section className="note-list">
@@ -14,7 +14,14 @@ function NoteList({ notes, onDeleteNote }) {
   return (
     <section className="note-list">
       {notes.map((note) => (
-        <NoteCard key={note.id} note={note} onDelete={onDeleteNote} />
+        <NoteCard
+          key={note.id}
+          note={note}
+          onDelete={onDeleteNote}
+          onTogglePin={onTogglePin}
+          showTimestamp={showTimestamps}
+          compactMode={compactMode}
+        />
       ))}
     </section>
   );

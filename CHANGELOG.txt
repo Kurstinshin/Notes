@@ -1,0 +1,20 @@
+Pink Notes Changelog
+====================
+
+1.0.0
+-----
+1. Added a cozy pink landing page as the first screen.
+2. Added a button to enter the Pink Notes page.
+3. Added a back button to return to the landing page.
+4. Added profile and settings features including name, mood, accent color, timestamps, and compact cards.
+5. Added note title, tag, and body editing.
+6. Added note pinning to keep important notes highlighted.
+7. Added search and sorting options for notes.
+8. Improved the overall UI with a softer, more polished look.
+9. Notes are saved locally in the browser.
+
+1.1.0
+-----
+1. Added a more polished static navigation flow between the landing page and notes page.
+2. Refined the pink-themed visuals for a warmer, more cozy feel.
+3. Improved spacing and layout for a cleaner note-taking experience.
